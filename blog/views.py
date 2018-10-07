@@ -5,6 +5,7 @@ from django.shortcuts import render
 from blog.models import Blog
 from django.shortcuts import render_to_response
 from django.http import  HttpResponse,HttpResponseRedirect
+from django.contrib import  auth
 # Create your views here.
 
 
@@ -17,10 +18,14 @@ def login(request):
     blog_list=Blog.objects.all()
     username=request.POST.get('username','')
     password=request.POST.get('password','')
-    if username !=''and password!='':
+    users_=[username]
+    user=auth.authenticate(username=username,password=password)
+    if user is not None:
+        auth.login(request,user)    #验证登录
+    # if username !=''and password!='':
         response=HttpResponseRedirect('/login_ok/')
         # response.set_cookie('username',username,1200) #cookie
-        request.session['username']=username    #session
+        request.session['username']=users_    #session
         return response
     else:
         return render(request,'index.html',{'error':'username or passwd error','blogs':blog_list})
@@ -29,6 +34,7 @@ def login_ok(request):
     blog_list = Blog.objects.all()
     # username = request.COOKIES.get('username', '')  #cookie
     username=request.session.get('username','') #session
+    user=username[0]
     return render(request,'login_ok.html',{'user':username,'blogs':blog_list})
     # if username=='zl' and password=='jamesraul':
     #     return HttpResponse('login success!')
