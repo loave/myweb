@@ -57,3 +57,12 @@ def logout(request):
     del request.session['username']
     return response
 
+def student(request):
+    student={
+        'jack':[22,'boy','Programmer'],
+        'alen':[27,'boy','Designer'],
+        'una':[23,'girl','Tester'],
+        'Brant':[23,'girl','Tester'],
+        'David':[23,'boy','Tester']
+    }
+    return render(request,'student.html',{'student_list':student})

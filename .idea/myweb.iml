@@ -5,5 +5,7 @@
     <orderEntry type="jdk" jdkName="Python 2.7" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="examples" />
+    <orderEntry type="module" module-name="HelloWorld" />
+    <orderEntry type="module" module-name="bootstrap3" />
   </component>
 </module>
