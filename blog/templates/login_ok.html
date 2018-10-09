@@ -3,7 +3,7 @@
     <h2>嘿!{{user}}
     <a href="/logout">退出</a>
     </h2>
-    {%for blog in blogs%}
+    {%for blog in blog_list%}
         <h3>{{blog.title}}</h3>
         <p>{{blog.timestamp}}</p>
         <p>{{blog.body}}</p>
