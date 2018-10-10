@@ -1,0 +1,54 @@
+<html lang="zh-CN">
+    <HEAD>
+        {% load bootstrap3%}
+        {%bootstrap_css%}
+        {%bootstrap_javascript%}
+        {%bootstrap_messages%}
+    </HEAD>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+            </div>
+        </nav>
+        <br><br>
+        <div class="container">
+            <div class="row">
+                <h2>book list</h2>
+                    <table class="table">
+                        <th>name</th><th>publisher</th><th>data</th><th>authors</th>
+                            {%for book in pages%}
+                            <tr class="success">
+                                <td>{{book.title}}</td>
+                                <td>{{book.publisher.name}}</td>
+                                <td>{{book.publication_date}}</td>
+                                <td>
+                                    {%for author in book.authors.values%}
+                                        {{author.first_name}}
+                                    {%endfor%}
+                                </td>
+                            {%endfor%}
+                            </tr>
+                    </table>
+            </div>
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {%if pages.has_previous%}
+                    <a href="?page={{pages.previous_page_number}}">previous</a>
+                {%endif%}
+                <span class="current">
+                    Page {{pages.number}} of {{pages.paginator.num_pages}}
+                </span>
+                {%if pages.has_next%}
+                    <a href="?page={{pages.next_page_number}}">next</a>
+                {%endif%}
+            </span>
+        </div>
+        <footer>
+            <p>&copy;Company 2018&zzl</p>
+        </footer>
+    </body>
+</html>

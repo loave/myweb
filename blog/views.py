@@ -2,12 +2,13 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from blog.models import Blog
+from blog.models import *
 from django.shortcuts import render_to_response
 from django.http import  HttpResponse,HttpResponseRedirect
 from django.contrib import  auth
 from django.contrib.auth.decorators import login_required
 from myweb import settings
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 # Create your views here.
 
 
@@ -58,6 +59,7 @@ def logout(request):
     return response
 
 def student(request):
+    books=Book.objects.all()
     student={
         'jack':[22,'boy','Programmer'],
         'alen':[27,'boy','Designer'],
@@ -65,4 +67,16 @@ def student(request):
         'Brant':[23,'girl','Tester'],
         'David':[23,'boy','Tester']
     }
-    return render(request,'student.html',{'student_list':student})
+    return render(request,'student.html',{'student_list':student,'book_list':books})
+
+def page(request):
+    file_list=Book.objects.all()
+    paginator=Paginator(file_list,2)
+    page=request.GET.get('page')
+    try:
+        contacts=paginator.page(page)
+    except PageNotAnInteger:
+        contacts=paginator.page(1)
+    except EmptyPage:
+        contacts=paginator.page(paginator.num_pages)
+    return render(request,'book.html',{'pages':contacts})

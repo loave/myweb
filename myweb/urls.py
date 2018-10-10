@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from blog.views import index,login,login_ok,logout,student
+# from blog.views import index,login,login_ok,logout,student
+from blog.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,5 +25,6 @@ urlpatterns = [
     url(r'^login_ok/$',login_ok),
     url(r'^logout/$',logout),
     url(r'^student/$',student),
+    url(r'book/$',page),
 ]
 
