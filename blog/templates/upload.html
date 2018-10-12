@@ -29,6 +29,16 @@
                     </p>
                 </form>
         </div>
+        <h2>file list:</h2>
+            <table class="table">
+                <th>filename</th><th>file</th>
+                {%for file in file_list%}
+                    <tr class="success">
+                        <td>{{file.filename}}</td>
+                        <td>{{file.fileway}}</td>
+                    </tr>
+                {%endfor%}
+            </table>
         <footer>&copy; Company 2018&zzl</footer>
     </body>
 </html>

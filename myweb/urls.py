@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^login/$',login),
     url(r'^login_ok/$',login_ok),
     url(r'^logout/$',logout),
+    url(r'accounts/login/$',index),
     url(r'^student/$',student),
     url(r'book/$',page),
     url(r'upfile/$',upload),

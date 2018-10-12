@@ -82,9 +82,11 @@ def page(request):
     return render(request,'book.html',{'pages':contacts})
 
 def upload(request):
-    return render(request,'upload.html')
+    files=File.objects.all()
+    return render(request,'upload.html',{'file_list':files})
 
 def upload_save(request):
+    files = File.objects.all()
     filename=request.POST.get('filename','')
     fileing=request.FILES.get('fileing','')
     if filename==''or fileing=='':
@@ -95,4 +97,4 @@ def upload_save(request):
         upload.filename=filename
         upload.fileway=fileing
         upload.save()
-        return render(request,'upload.html',{'upload_success':'上传完毕'})
+        return render(request,'upload.html',{'upload_success':'上传完毕','file_list':files})
