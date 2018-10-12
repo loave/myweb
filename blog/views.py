@@ -80,3 +80,19 @@ def page(request):
     except EmptyPage:
         contacts=paginator.page(paginator.num_pages)
     return render(request,'book.html',{'pages':contacts})
+
+def upload(request):
+    return render(request,'upload.html')
+
+def upload_save(request):
+    filename=request.POST.get('filename','')
+    fileing=request.FILES.get('fileing','')
+    if filename==''or fileing=='':
+        error='文件或文件描述不能为空'
+        return render(request,'upload.html',{'error':error})
+    else:
+        upload=File()
+        upload.filename=filename
+        upload.fileway=fileing
+        upload.save()
+        return render(request,'upload.html',{'upload_success':'上传完毕'})

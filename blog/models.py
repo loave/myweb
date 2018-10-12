@@ -45,3 +45,10 @@ class Book(models.Model):
 
     def __unicode__(self):
         return self.title
+
+class File(models.Model):
+    filename=models.CharField(max_length=30)
+    fileway=models.FileField(upload_to='./upload/')
+
+    def __unicode__(self):
+        return self.filename

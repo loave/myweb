@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^logout/$',logout),
     url(r'^student/$',student),
     url(r'book/$',page),
+    url(r'upfile/$',upload),
+    url(r'upload_s/$',upload_save),
 ]
 
