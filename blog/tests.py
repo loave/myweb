@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from blog.models import import Author
+from blog.models import Author
 
 # Create your tests here.
 class AuthorTestCase(TestCase):
@@ -13,5 +13,5 @@ class AuthorTestCase(TestCase):
     def test_add_author_email(self):
         zhang=Author.objects.get(first_name='zhang')
         li=Author.objects.get(first_name='li')
-        self.assertEqual(zhang.email,'zhangsan@gmail.com')
+        self.assertEqual(zhang.email,'zhangsan1@gmail.com')
         self.assertEqual(li.email,'lisi@gmail.com')
