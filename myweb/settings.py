@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',#log应用
     'bootstrap3',
+    'polls',
 ]
 
 MIDDLEWARE = [
