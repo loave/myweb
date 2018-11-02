@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
 # from blog.views import index,login,login_ok,logout,student
 from blog.views import *
@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'book/$',page),
     url(r'upfile/$',upload),
     url(r'upload_s/$',upload_save),
+    url(r'polls/',include('polls.urls',namespace="polls")),
 ]
 

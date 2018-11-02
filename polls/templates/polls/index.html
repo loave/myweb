@@ -1,0 +1,33 @@
+<html lang="zh-CN">
+    <head>
+        {% load bootstrap3 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% bootstrap_messages %}
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Polls System</a>
+                </div>
+            </div>
+        </nav>
+        <br><br>
+        <div class="well">
+            <h3>Question List:</h3>
+                {% if latest_question_list %}
+                    <ul>
+                        {% for question in latest_question_list %}
+                            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text}}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No Polls are available</p>
+                {% endif %}
+        </div>
+        <footer>
+            <p>&copy;company 2018&zzl</p>
+        </footer>
+    </body>
+</html>

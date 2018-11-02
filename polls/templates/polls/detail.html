@@ -1,0 +1,32 @@
+<html lang="zh-CN">
+    <head>
+        {% load bootstrap3 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% bootstrap_messages %}
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Polls System</a>
+                </div>
+            </div>
+        </nav>
+        <br><br>
+        <div class="well">
+            <h1>{{ question.question_text }}</h1>
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <form action="{% url 'polls:vote' question.id%}" method="post">{% csrf_token %}
+                    {% for choice in question.choice_set.all %}
+                        <input type="radio" name="choice" id="choice {{ forloop.counter }}" value="{{ choice.id }}"/>
+                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+                    {% endfor%}
+                <input type="submit" value="vote" />
+                </form>
+        </div>
+            <footer>
+                <p>&copy;company 2018&zzl</p>
+            </footer>
+    </body>
+</html>

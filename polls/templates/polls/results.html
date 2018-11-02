@@ -1,0 +1,30 @@
+<html lang="zh-CN">
+    <head>
+        {% load bootstrap3 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% bootstrap_messages %}
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Polls System</a>
+                </div>
+            </div>
+        </nav>
+        <br><br>
+        <div class="well">
+            <h1>{{ question.question_text }}</h1>
+                <ul>
+                {% for choice in question.choice_set.all %}
+                    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote {{ choice.votes|pluralize}}</li>
+                {% endfor %}
+                </ul>
+                <a href="{% url 'polls:detail' question.id %}">vote again?</a>
+        </div>
+        <footer>
+            <P>&copy;company 2018&zzl</P>
+        </footer>
+    </body>
+</html>
